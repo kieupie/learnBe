@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kieupie/learn-be.git"
+    "url": "git+https://github.com/kieupie/learnBe.git"
   },
   "keywords": [
-    "learn-be"
+    "learnBe"
   ],
   "author": "kieu1004",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kieupie/learn-be/issues"
+    "url": "https://github.com/kieupie/learnBe/issues"
   },
-  "homepage": "https://github.com/kieupie/learn-be#readme",
+  "homepage": "https://github.com/kieupie/learnBe#readme",
   "dependencies": {
     "express": "^4.18.2"
   }
