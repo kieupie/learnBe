@@ -1,25 +1,18 @@
-const express = require('express')
-require('dotenv').config()
-const path = require('path')
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const configViewEngine = require('./config/viewEngine');
+const webRouter = require('./routes/web');
 
-const app = express()
-const hostname = process.env.PORT || 8081
-const port = process.env.PORT
+const app = express();
+const hostname = process.env.PORT || 8081;
+const port = process.env.PORT;
 
-//ejs config
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+//ejs, static files config
+configViewEngine(app);
 
-//static files config
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.get('/sample', (req, res) => {
-    res.render('sample')
-})
+//router routes
+app.use('/v1', webRouter);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
