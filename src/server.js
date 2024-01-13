@@ -10,6 +10,9 @@ const port = process.env.PORT
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//static files config
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
@@ -18,6 +21,6 @@ app.get('/sample', (req, res) => {
     res.render('sample')
 })
 
-app.listen(hostname, port, () => {
-    console.log(`App listening on port ${port}`)
-})
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+});
