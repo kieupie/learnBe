@@ -6,24 +6,36 @@ const webRouter = require('./routes/web');
 const connection = require('./config/database');
 
 const app = express();
-const hostname = process.env.PORT || 8081;
+const hostname = process.env.HOST_NAME || 8080;
 const port = process.env.PORT;
+
+//config req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 //ejs, static files config
 configViewEngine(app);
 
 //router routes
-app.use('/v1', webRouter);
+// app.use('/v1', webRouter);
+app.use('/', webRouter);
+
 
 //simple query
 connection.query(
     'SELECT * FROM Users',
     function (err, results, fields) {
-        console.log('results', results)
-        console.log('fields', fields)
+        if (err) {
+            console.error('Error executing query:', err);
+            return;
+        }
+        console.log('This is results', results);
+        console.log('This is fields', fields);
     }
-)
+);
 
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+
+app.listen(port, hostname, () => {
+    console.log(`App listening on ${hostname}:${port}`);
 });
+
